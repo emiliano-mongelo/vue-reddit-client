@@ -1,20 +1,21 @@
 <template>
-  <div id="app">
-    <aside class="w-30-ns">
+  <div id="app" class="flex flex-column flex-row-l mw8 center ph2-l h-content pb3-l pt2-l">
+    <aside class="mr3-l w-30-l w-100 ph3 ph0-l pb2 pb0-l relative tl ba">
       <Entries :entries="entries" />
     </aside>
-    <section class="w-70-ns">
-      <Entry :entry="entry" />
+    <section class="w-70-l w-100 pb4-l flex-grow-1">
+      <Entry v-if={entry} :entry="entry" />
     </section>
   </div>
 </template>
 
 <script>
-import Entries from "./components/Entries";
-import Entry from "./components/Entry";
+import { find, propEq } from 'ramda';
+import Entries from './Entries';
+import Entry from './Entry';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     Entries,
     Entry
@@ -24,8 +25,15 @@ export default {
       return this.$store.state.entries;
     },
     entry() {
-      return this.$store.state.entries.length
-        ? this.$store.state.entries[this.$store.state.currentEntry]
+      const entries = this.$store.state.entries;
+
+      return entries.length
+        ? this.$store.state.currentEntry
+          ? find(
+              propEq('id', this.$store.state.currentEntry),
+              entries
+            )
+          : entries[0]
         : null;
     }
   },

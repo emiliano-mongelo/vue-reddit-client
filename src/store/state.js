@@ -1,5 +1,6 @@
 export default {
   entries: [],
   currentEntry: undefined,
-  after: null
+  after: null,
+  sidebarVisible: false
 }

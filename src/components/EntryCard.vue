@@ -33,6 +33,7 @@
       handleEntryClick() {
         this.$store.commit('setCurrentEntry', this.entry.id);
         this.$store.commit('setReadEntry', this.entry.id);
+        this.$store.commit('setSidebarVisible', false);
       },
       handleDismissEntry() {
         this.$store.commit('removeEntry', this.entry.id);

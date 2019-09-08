@@ -4,6 +4,9 @@ export default {
   setEntries(state, entries) {
     state.entries = [...state.entries, ...entries];
   },
+  setSidebarVisible(state, visible) {
+    state.sidebarVisible = visible;
+  },
   setAfter(state, after) {
     state.after = after;
   },

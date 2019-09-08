@@ -26,12 +26,10 @@ export default {
     Entries,
     Entry
   },
-  data() {
-    return {
-      sidebarVisible: false
-    }
-  },
   computed: {
+    sidebarVisible() {
+      return this.$store.state.sidebarVisible;
+    },
     after() {
       return this.$store.state.after;
     },
@@ -47,6 +45,9 @@ export default {
         : null;
     }
   },
+  async created() {
+    await this.$store.dispatch("retrieveEntries");
+  },
   methods: {
     infiniteHandler($state) {
       this.$store.dispatch('retrieveEntries', this.after).then(() => {
@@ -61,10 +62,10 @@ export default {
       this.$store.commit('dismissAll');
     },
     openSidebar() {
-      this.sidebarVisible = true;
+      this.$store.commit('setSidebarVisible', true);
     },
     closeSidebar() {
-      this.sidebarVisible = false;
+      this.$store.commit('setSidebarVisible', false);
     }
   }
 };

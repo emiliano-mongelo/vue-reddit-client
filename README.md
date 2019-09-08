@@ -1,7 +1,7 @@
 # vue-reddit-client
 
 > Simple Reddit client with VueJS
-
+[See live demo](https://vue-reddit-client.herokuapp.com/).
 ## Build Setup
 
 ``` bash

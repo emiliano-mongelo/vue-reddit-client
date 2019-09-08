@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="flex flex-column flex-row-ns mw8 center ph2-ns pt2-ns">
-    <aside class="dn db-ns w-40-ns relative tl ba">
+  <div id="app" class="flex flex-column flex-row-ns center">
+    <aside class="dn db-ns w-40-ns tl ba overflow-y-auto">
       <Entries :entries="entries" />
     </aside>
     <section class="w-60-ns w-100 tl">
@@ -53,7 +53,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100vh;
 }
 
 h1,

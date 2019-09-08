@@ -6,7 +6,7 @@
       <span class="pl1 f6">{{ formatDate(entry.createdDate) }}</span>
     </section>
 
-    <section class="mt2 flex flex-wrap flex-nowrap-ns" @click="setCurrentEntry">
+    <section class="mt2 flex flex-wrap flex-nowrap-ns" @click="handleEntryClick">
       <img v-if="entry.thumbnail" class="db pr2 w4" :src="entry.thumbnail">
       <span class="db">{{ entry.title }}</span>
     </section>
@@ -30,8 +30,9 @@
       }
     },
     methods: {
-      setCurrentEntry() {
+      handleEntryClick() {
         this.$store.commit('setCurrentEntry', this.entry.id);
+        this.$store.commit('setReadEntry', this.entry.id);
       },
       formatDate(ts) {
         return formatDate({ts, relative: true});

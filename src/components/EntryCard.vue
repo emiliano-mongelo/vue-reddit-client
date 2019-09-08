@@ -12,7 +12,7 @@
     </section>
 
     <section class="mt3 justify-between flex items-center">
-      <span class="red pointer">Dismiss Post</span>
+      <span class="red pointer" @click="handleDismissEntry">Dismiss Post</span>
       <span class="orange">{{ entry.comments }} Comments</span>
     </section>
   </div>
@@ -33,6 +33,9 @@
       handleEntryClick() {
         this.$store.commit('setCurrentEntry', this.entry.id);
         this.$store.commit('setReadEntry', this.entry.id);
+      },
+      handleDismissEntry() {
+        this.$store.commit('removeEntry', this.entry.id);
       },
       formatDate(ts) {
         return formatDate({ts, relative: true});

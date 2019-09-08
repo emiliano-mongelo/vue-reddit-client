@@ -1,4 +1,5 @@
-import { map, lensProp, set, when, propEq } from 'ramda';
+import { map, lensProp, set, when, propEq, reject } from 'ramda';
+
 export default {
   setEntries(state, entries) {
     state.entries = entries;
@@ -13,5 +14,8 @@ export default {
         set(lensProp('unread'), false)
       )
     )(state.entries);
+  },
+  removeEntry(state, id) {
+    state.entries = reject(propEq('id', id), state.entries);
   }
 }

@@ -4,18 +4,18 @@
       <Entries :entries="entries" />
     </aside>
     <section class="w-60-ns w-100 tl">
-      <Entry v-if={entry} :entry="entry" />
+      <Entry :entry="entry" />
     </section>
   </div>
 </template>
 
 <script>
-import { find, propEq } from 'ramda';
-import Entries from './Entries';
-import Entry from './Entry';
+import { find, propEq } from "ramda";
+import Entries from "./Entries";
+import Entry from "./Entry";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Entries,
     Entry
@@ -26,19 +26,15 @@ export default {
     },
     entry() {
       const entries = this.$store.state.entries;
+      const currentEntry = this.$store.state.currentEntry;
 
-      return entries.length
-        ? this.$store.state.currentEntry
-          ? find(
-              propEq('id', this.$store.state.currentEntry),
-              entries
-            )
-          : entries[0]
+      return entries.length && currentEntry
+        ? find(propEq("id", currentEntry), entries)
         : null;
     }
   },
   async created() {
-    await this.$store.dispatch('retrieveEntries');
+    await this.$store.dispatch("retrieveEntries");
   }
 };
 </script>

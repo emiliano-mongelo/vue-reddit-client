@@ -17,5 +17,8 @@ export default {
   },
   removeEntry(state, id) {
     state.entries = reject(propEq('id', id), state.entries);
+  },
+  dismissAll(state) {
+    state.entries = [];
   }
 }

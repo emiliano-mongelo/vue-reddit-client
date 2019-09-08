@@ -1,7 +1,10 @@
 <template>
   <div id="app" class="flex flex-column flex-row-ns center">
-    <aside class="dn db-ns w-40-ns tl ba overflow-y-auto">
+    <aside class="dn db-ns w-40-ns tl ba overflow-y-auto relative bg-black">
       <Entries :entries="entries" />
+      <div class="absolute bottom-0 bg-black orange w-100 tc pv3" @click="handleDismissAll">
+        Dismiss All
+      </div>
     </aside>
     <section class="w-60-ns w-100 tl">
       <Entry :entry="entry" />
@@ -35,6 +38,11 @@ export default {
   },
   async created() {
     await this.$store.dispatch("retrieveEntries");
+  },
+  methods: {
+    handleDismissAll() {
+      this.$store.commit('dismissAll');
+    }
   }
 };
 </script>

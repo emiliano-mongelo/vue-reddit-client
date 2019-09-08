@@ -1,12 +1,12 @@
 <template>
-  <div id="app" class="flex flex-column flex-row-ns center">
-    <aside class="dn db-ns w-40-ns tl ba overflow-y-auto relative bg-black">
+  <div id="app" class="flex center" v-hammer:swipe.right="openSidebar">
+    <aside :class="{ db: sidebarOpen }" class="dn db-ns w-40 tl ba overflow-y-auto relative bg-black">
       <Entries :entries="entries" />
       <div class="absolute bottom-0 bg-black orange w-100 tc pv3" @click="handleDismissAll">
         Dismiss All
       </div>
     </aside>
-    <section class="w-60-ns w-100 tl">
+    <section class="w-60 tl" @click="closeSidebar">
       <Entry :entry="entry" />
     </section>
   </div>
@@ -22,6 +22,11 @@ export default {
   components: {
     Entries,
     Entry
+  },
+  data() {
+    return {
+      sidebarOpen: false
+    }
   },
   computed: {
     entries() {
@@ -42,6 +47,12 @@ export default {
   methods: {
     handleDismissAll() {
       this.$store.commit('dismissAll');
+    },
+    openSidebar() {
+      this.sidebarOpen = true;
+    },
+    closeSidebar() {
+      this.sidebarOpen = false;
     }
   }
 };

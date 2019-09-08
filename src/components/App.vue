@@ -70,7 +70,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 html {
   font-size: 100%;
 }

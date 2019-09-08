@@ -44,7 +44,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style>
   .unread {
     width: 0.625rem;
     height: 0.625rem;

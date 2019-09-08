@@ -18,4 +18,4 @@ const formatDate = ({ts, relative, format})  => {
   return relative ? mDate.fromNow() : mDate.format(format || '');
 };
 
-module.exports = formatDate;
+export default formatDate;

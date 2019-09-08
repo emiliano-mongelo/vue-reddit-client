@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-black">
     <EntryCard v-for="(entry, key) in entries" :entry="entry" :key="key" />
   </div>
 </template>

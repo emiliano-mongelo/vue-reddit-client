@@ -54,6 +54,7 @@ describe('redditResponseFormatter', () => {
     expect(redditResponseFormatter(payload)).toMatchObject({
         id: "2hozly",
         author: "mubukugrappa",
+        createdDate: 1411908784,
         thumbnail: "",
         title: "The secret to raising well behaved teens? Maximise their sleep: While paediatricians warn sleep deprivation can stack the deck against teenagers, a new study reveals youth’s irritability and laziness aren’t down to attitude problems but lack of sleep",
         comments: 3740,

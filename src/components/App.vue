@@ -1,9 +1,9 @@
 <template>
-  <div id="app" class="flex flex-column flex-row-l mw8 center ph2-l h-content pb3-l pt2-l">
-    <aside class="mr3-l w-30-l w-100 ph3 ph0-l pb2 pb0-l relative tl ba">
+  <div id="app" class="flex flex-column flex-row-ns mw8 center ph2-ns pt2-ns">
+    <aside class="dn db-ns w-40-ns relative tl ba">
       <Entries :entries="entries" />
     </aside>
-    <section class="w-70-l w-100 pb4-l flex-grow-1">
+    <section class="w-60-ns w-100 tl">
       <Entry v-if={entry} :entry="entry" />
     </section>
   </div>
@@ -44,6 +44,9 @@ export default {
 </script>
 
 <style lang="scss">
+html {
+  font-size: 100%;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

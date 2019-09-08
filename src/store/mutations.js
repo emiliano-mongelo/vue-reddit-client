@@ -2,7 +2,10 @@ import { map, lensProp, set, when, propEq, reject } from 'ramda';
 
 export default {
   setEntries(state, entries) {
-    state.entries = entries;
+    state.entries = [...state.entries, ...entries];
+  },
+  setAfter(state, after) {
+    state.after = after;
   },
   setCurrentEntry(state, id) {
     state.currentEntry = id;

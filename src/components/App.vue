@@ -1,18 +1,20 @@
 <template>
   <div id="app" class="flex center" v-hammer:swipe.right="openSidebar">
-    <aside :class="{ db: sidebarOpen }" class="dn db-ns w-40 tl ba overflow-y-auto relative bg-black">
+    <aside :class="{ 'sidebar-visible': sidebarVisible }" class="sidebar w-40 db-ns tl ba overflow-y-auto bg-black relative f6 f5-ns">
       <Entries :entries="entries" />
-      <div class="absolute bottom-0 bg-black orange w-100 tc pv3" @click="handleDismissAll">
+      <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+      <div v-if="entries.length" class="sticky bottom-0 bg-black orange w-100 tc pv3" @click="handleDismissAll">
         Dismiss All
       </div>
     </aside>
-    <section class="w-60 tl" @click="closeSidebar">
+    <section class="w-100 w-60-ns tl" @click="closeSidebar">
       <Entry :entry="entry" />
     </section>
   </div>
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading';
 import { find, propEq } from "ramda";
 import Entries from "./Entries";
 import Entry from "./Entry";
@@ -20,15 +22,19 @@ import Entry from "./Entry";
 export default {
   name: "App",
   components: {
+    InfiniteLoading,
     Entries,
     Entry
   },
   data() {
     return {
-      sidebarOpen: false
+      sidebarVisible: false
     }
   },
   computed: {
+    after() {
+      return this.$store.state.after;
+    },
     entries() {
       return this.$store.state.entries;
     },
@@ -41,18 +47,24 @@ export default {
         : null;
     }
   },
-  async created() {
-    await this.$store.dispatch("retrieveEntries");
-  },
   methods: {
+    infiniteHandler($state) {
+      this.$store.dispatch('retrieveEntries', this.after).then(() => {
+        if (this.after) {
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      });
+    },
     handleDismissAll() {
       this.$store.commit('dismissAll');
     },
     openSidebar() {
-      this.sidebarOpen = true;
+      this.sidebarVisible = true;
     },
     closeSidebar() {
-      this.sidebarOpen = false;
+      this.sidebarVisible = false;
     }
   }
 };
@@ -88,5 +100,24 @@ li {
 
 a {
   color: #42b983;
+}
+
+.sidebar {
+  transition: 250ms;
+  width: 0;
+}
+
+.sidebar-visible {
+  width: 100%;
+}
+
+.sticky {
+  position: sticky;
+}
+
+@media screen and (min-width: 30em) {
+  .sidebar {
+    width: 40%;
+  }
 }
 </style>

@@ -2,12 +2,12 @@
   <div class="pa3 bb white">
     <section>
       <span v-if="entry.unread" class="dib bg-blue br-100 unread"></span>
-      <span class="pl1 f4">{{ entry.author }}</span>
-      <span class="pl1 f6">{{ formatDate(entry.createdDate) }}</span>
+      <span class="pl1 f5 f4-ns">{{ entry.author }}</span>
+      <span class="pl1 f7 f6-ns">{{ formatDate(entry.createdDate) }}</span>
     </section>
 
     <section class="mt2 flex flex-wrap flex-nowrap-ns" @click="handleEntryClick">
-      <img v-if="entry.thumbnail" class="db pr2 w4" :src="entry.thumbnail">
+      <img v-if="entry.thumbnail" class="db pr2 w-30 pb2" :src="entry.thumbnail">
       <span class="db">{{ entry.title }}</span>
     </section>
 

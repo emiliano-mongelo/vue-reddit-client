@@ -1,4 +1,5 @@
 export default {
   entries: [],
-  currentEntry: undefined
+  currentEntry: undefined,
+  after: null
 }
